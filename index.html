@@ -13,9 +13,22 @@
         </style>
         <script>
             const go = new Go();
-            WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
-                go.run(result.instance);
-            });
+
+            if (WebAssembly.instantiateStreaming) {
+                WebAssembly.instantiateStreaming(
+                    fetch("main.wasm"), go.importObject
+                ).then(result =>
+                    go.run(result.instance)
+                );
+            } else {
+                fetch("main.wasm").then(response =>
+                  response.arrayBuffer()
+                ).then(bytes =>
+                  WebAssembly.instantiate(bytes, go.importObject)
+                ).then(result =>
+                   go.run(result.instance)
+                );
+            }
         </script>
     </head>
     <body>
