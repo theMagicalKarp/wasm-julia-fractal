@@ -2,7 +2,7 @@
 
 This is an example of golang web assembly which renders an interactive julia set.
 
-![example](https://i.imgur.com/CObw5Uu.gif)
+![example](https://i.imgur.com/jdzYYGc.gif)
 
 ## Build
 
@@ -16,7 +16,10 @@ cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" .
 Or Docker
 
 ```
-docker run -e GOOS=js -e GOARCH=wasm -ti -v $(pwd):/wasm-julia-fractal -w /wasm-julia-fractal golang:1.13-rc-buster go build -o main.wasm
+docker run -ti -e GOOS=js -e GOARCH=wasm \
+    -v $(pwd):/wasm-julia-fractal -w /wasm-julia-fractal \
+    golang:1.13-rc-buster go build -o main.wasm
+
 docker cp $(docker create golang:1.13-rc-buster):/usr/local/go/misc/wasm/wasm_exec.js wasm_exec.js
 ```
 
@@ -29,5 +32,9 @@ go run serve/serve.go
 ```
 Or Docker
 ```
-docker run -p 8080:8080 -ti -v $(pwd):/wasm-julia-fractal -w /wasm-julia-fractal golang:1.13-rc-buster go run serve/serve.go
+docker run -p 8080:8080 -ti \
+    -v $(pwd):/wasm-julia-fractal -w /wasm-julia-fractal \
+    golang:1.13-rc-buster go run serve/serve.go
 ```
+
+Visit localhost:8080!
