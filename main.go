@@ -85,8 +85,8 @@ func main() {
 	imageData := scaledCtx.Call("createImageData", width, height)
 	imageDataData := imageData.Get("data")
 
-	mousex := 0.0
-	mousey := 0.0
+	mousex := 0.1
+	mousey := 0.1
 	thetaX := 0.0
 	thetaY := 0.0
 
