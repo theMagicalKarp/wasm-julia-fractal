@@ -115,7 +115,7 @@ func main() {
 		thetaX = thetaX - mousex
 		thetaY = thetaY - mousey
 
-		x0 =float32(math.Sin(thetaX*0.0174533)) * 0.50 - 0.4
+		x0 = float32(math.Sin(thetaX*0.0174533)) * 0.50 - 0.4
 		y0 = float32(math.Sin(thetaY*0.0174533)) * 0.50 - 0.6
 
 		now := time.Now()
